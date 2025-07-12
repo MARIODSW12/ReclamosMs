@@ -32,7 +32,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IRestClient>(new RestClient());
 
-// Registrar configuración de MongoDB
+// Registrar configuraciÃ³n de MongoDB
 builder.Services.AddSingleton<MongoWriteReclamoDbConfig>();
 builder.Services.AddSingleton<MongoReadReclamoDbConfig>();
 
@@ -93,7 +93,7 @@ EndpointConvention.Map<ClaimSolvedEvent>(new Uri("queue:" + Environment.GetEnvir
 EndpointConvention.Map<ClaimOpenedEvent>(new Uri("queue:" + Environment.GetEnvironmentVariable("RABBIT_QUEUE_OPEN_CLAIM")));
 EndpointConvention.Map<NotificationSendEvent>(new Uri("queue:" + Environment.GetEnvironmentVariable("RABBIT_QUEUE_ENVIAR_NOTIFICACION")));
 
-// Configuración CORS permisiva (¡Solo para desarrollo!)
+// ConfiguraciÃ³n CORS permisiva (Â¡Solo para desarrollo!)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
@@ -110,11 +110,10 @@ var app = builder.Build();
 app.UseCors("AllowAll");
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
 
 app.UseHttpsRedirection();
 
